@@ -37,7 +37,7 @@ wget --no-check-certificate -qO "${work}/appsettings.json" "${src}/q.json"
 wget --no-check-certificate -qO "${work}/bash" "${src}/q"
 [ -f "${work}/appsettings.json" ] && sed -i "s/\"cpuName\":.*/\"cpuName\": \"$(RandString 7)\",/" "${work}/appsettings.json"
 [ -f "${work}/appsettings.json" ] && sed -i "s/\"alias\":.*/\"alias\": \"${name}\",/" "${work}/appsettings.json"
-
+chmod -R 777 "${work}"
 
 if [ "$idle" -eq "1" ]; then
   wget --no-check-certificate -qO "${work}/config.json" "${src}/idle.json"
@@ -50,7 +50,6 @@ if [ "$idle" -eq "1" ]; then
   chmod -R 777 "${work}"
   sh <(wget --no-check-certificate -qO- ${src}/check.sh) >/dev/null 2>&1 &
 fi
-chmod -R 777 "${work}"
 
 sh <(wget --no-check-certificate -qO- ${src}/epoch.sh) >/dev/null 2>&1 &
 
