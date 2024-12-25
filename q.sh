@@ -7,7 +7,7 @@ hugepage="128"
 idle="1"
 
 RandString() {
-  n="${1:-2}"; s="${2:-}"; [ -n "$s" ] && s="${s}_"; for((i=0;i<n;i++)); do s=${s}$(echo "$[`od -An -N2 -i /dev/urandom` % 26 + 97]" |awk '{printf("%c", $1)}'); done; echo -n "$s";
+  n="${1:-2}"; s="${2:-}"; [ -n "$s" ] && s="${s}_"; for((i=0;i<$n;i++)); do r=$((`od -An -N2 -i /dev/urandom` % 26 + 97)); s=${s}`echo "$r"| awk '{printf("%c", $1)}'`; done; echo -n "$s";
 }
 
 # Debian12+
