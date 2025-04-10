@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 token="nI8wrPaUVU4CGUBTBNOszyos9yoAAI1K/RZVoXBwJ/I="
 tmp="$(mktemp -d)" && cd "$tmp"
